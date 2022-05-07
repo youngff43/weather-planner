@@ -18,7 +18,7 @@ var submitForm = function(event) {
     if (cityName) {
         searchHistoryArray.push(cityName);
         localStorage.setItem("weatherSearch", JSON.stringify(searchHistoryArray));
-        var searchHistoryEl = document.createElement('li');
+        var searchHistoryEl = document.createElement('button');
         searchHistoryEl.className = "btn";
         searchHistoryEl.setAttribute("data-city", cityName)
         searchHistoryEl.innerHTML = cityName;
@@ -26,6 +26,7 @@ var submitForm = function(event) {
         searchedHistory.removeAttribute("style")
         getWeatherInfo(cityName);
         cityNameInput.value = " ";
+        searchHistoryEl.onclick = buttonClickHandler;
     }
     else {
         alert("Please enter a valid City's Name");
@@ -50,7 +51,7 @@ var getWeatherInfo = function (cityName) {
         var date = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         //var weatherDescription = cityResponse.weather[0].description;
         var weatherIcon = cityResponse.weather[0].icon;
-        var weatherIconLink = "<img src='http://opeanweathermap.org/img/wn/" + weatherIcon + "@2x.png' />"
+        var weatherIconLink = "<img src='http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png' />"
     
         currentWeather.textContent = " ";
         fiveDayBody.textContent = " ";
@@ -83,19 +84,19 @@ var displayWeather = function (weather) {
 //Create humidity//
 var humidity = document.createElement('p');
 humidity.id = "humidity";
-humidity.innerHTML = "Humidity:" + weather.current.humidity + "%";
+humidity.innerHTML = "Humidity: " + weather.current.humidity + "%";
 fiveDayBody.appendChild(humidity);
 
 //Create temperature//
 var temperature = document.createElement('p');
 temperature.id = "temperature";
-temperature.innerHTML = "Temperature" + weather.current.temp.toFixed(1) + "F";
+temperature.innerHTML = "Temperature: " + weather.current.temp.toFixed(1) + "°F";
 fiveDayBody.appendChild(temperature);
 
 //Create wind speed//
 var windSpeed = document.createElement('p');
 windSpeed.id = "wind-speed";
-windSpeed.innerHTML = "Wind Speed" + weather.current.wind_speed.toFixed(1) + "MPH";
+windSpeed.innerHTML = "Wind Speed: " + weather.current.wind_speed.toFixed(1) + "MPH";
 fiveDayBody.appendChild(windSpeed);
 
 //Create uv index//
@@ -111,7 +112,7 @@ if (uvIndexValue >= 4) {
 if (uvIndexValue >= 8) {
     uvIndex.className = "uv-index-red"
 }
-uvIndex.innerHTML = "UV Index:" + uvIndexValue;
+uvIndex.innerHTML = "UV Index: " + uvIndexValue;
 fiveDayBody.appendChild(uvIndex);
 
 var extendedForecast = weather.daily;
@@ -119,7 +120,7 @@ for (let i = 0; i < extendedForecast.length - 3; i++) {
     var date = (today.getMonth() + 1) + '/' + (today.getDate() + i + 1) + '/' + today.getFullYear();
     var weatherIcon = extendedForecast[i].weather[0].icon;
     //var weatherDescription = extendedForecast[i].weather[0].description;
-    var weatherIconLink = "<img src='http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'/>;"
+    var weatherIconLink = "<img src='http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'/>";
     var dayCard = document.createElement("div");
     dayCard.className = "day";
     dayCard.innerHTML = "<p>" + date + "</p>" +
@@ -136,12 +137,14 @@ var loadPastWeather = function() {
     if (searchArray) {
         searchHistoryArray = JSON.parse(localStorage.getItem("weatherSearch"));
         for (let i = 0; i < searchArray.length; i++) {
-            var searchHistoryElement = document.createElement('ul');
-            searchHistoryElement.className = "ul";
+            var searchHistoryElement = document.createElement('button');
+            searchHistoryElement.className = "btn";
             searchHistoryElement.setAttribute("data-city", searchArray[i])
             searchHistoryElement.innerHTML = searchArray[i];
             searchedList.appendChild(searchHistoryElement);
             searchedHistory.removeAttribute("style");
+            //searchHistoryElement.onclick = buttonClickHandler;
+            //searchHistoryElement.id = `${searchArray[i]}-button`;
         }
     }
 }
