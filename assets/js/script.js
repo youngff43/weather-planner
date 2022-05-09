@@ -8,6 +8,8 @@ var citySearch = document.querySelector("#city-search");
 var fiveDay = document.querySelector("#five-day");
 var today = new Date();
 var actualCurrentWeather = document.querySelector("#actual-current-weather");
+var fiveDayHeader = document.querySelector("five-day-header");
+var currentWeatherCard = document.querySelector("current-weather-card");
 
 //function to submit form//
 var submitForm = function(event) {
@@ -48,15 +50,15 @@ var getWeatherInfo = function (cityName) {
         var latitude = cityResponse.coord.lat;
         var longitude = cityResponse.coord.lon;
         var city = cityResponse.name;
-        var date = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
         //var weatherDescription = cityResponse.weather[0].description;
         var weatherIcon = cityResponse.weather[0].icon;
         var weatherIconLink = "<img src='http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png' />"
     
         currentWeather.textContent = " ";
         fiveDayBody.textContent = " ";
-        actualCurrentWeather.innerHTML = city + " (" + date + ") " + weatherIconLink;
-        currentWeather.classList.remove("hidden-card");
+        actualCurrentWeather.innerHTML = city + " - " + date + "" + weatherIconLink;
+        currentWeatherCard.classList.remove("hidden-card");
         fiveDay.classList.remove("hidden-card");
 
         return fetch ('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&exclude=alerts,minutely,hourly&units=imperial&appid=ba2aa9d96d00d0af91f1a943d7132459');
@@ -85,19 +87,19 @@ var displayWeather = function (weather) {
 var humidity = document.createElement('p');
 humidity.id = "humidity";
 humidity.innerHTML = "Humidity: " + weather.current.humidity + "%";
-fiveDayBody.appendChild(humidity);
+currentWeather.appendChild(humidity);
 
 //Create temperature//
 var temperature = document.createElement('p');
 temperature.id = "temperature";
 temperature.innerHTML = "Temperature: " + weather.current.temp.toFixed(1) + "°F";
-fiveDayBody.appendChild(temperature);
+currentWeather.appendChild(temperature);
 
 //Create wind speed//
 var windSpeed = document.createElement('p');
 windSpeed.id = "wind-speed";
 windSpeed.innerHTML = "Wind Speed: " + weather.current.wind_speed.toFixed(1) + "MPH";
-fiveDayBody.appendChild(windSpeed);
+currentWeather.appendChild(windSpeed);
 
 //Create uv index//
 var uvIndex = document.createElement('p');
@@ -113,7 +115,7 @@ if (uvIndexValue >= 8) {
     uvIndex.className = "uv-index-red"
 }
 uvIndex.innerHTML = "UV Index: " + uvIndexValue;
-fiveDayBody.appendChild(uvIndex);
+currentWeather.appendChild(uvIndex);
 
 var extendedForecast = weather.daily;
 for (let i = 0; i < extendedForecast.length - 3; i++) {
@@ -143,8 +145,6 @@ var loadPastWeather = function() {
             searchHistoryElement.innerHTML = searchArray[i];
             searchedList.appendChild(searchHistoryElement);
             searchedHistory.removeAttribute("style");
-            //searchHistoryElement.onclick = buttonClickHandler;
-            //searchHistoryElement.id = `${searchArray[i]}-button`;
         }
     }
 }

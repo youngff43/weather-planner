@@ -11,24 +11,14 @@
 }
 
 body {
-background-color: var(--platinum);
-font-size: 16px;
-color: var(--military-green);
-font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--platinum);
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
     padding: 10px;
     background-color: var(--blue);
-    color: var(--kelly-green);
-}
-
-h2,
-h3,
-h4,
-h5 {
-    font-weight: 500;
-    margin: 0;
     color: var(--kelly-green);
 }
 
@@ -42,10 +32,11 @@ p {
     margin: 10px 10px;
 }
 
+/* Button Formatting */
 .btn {
     font-size: medium;
     padding: 5px 5px;
-    width: 90%;
+    width: 50%;
     display: block;
     margin: 5px 0;
     border-radius: 40px;
@@ -66,7 +57,103 @@ p {
     font-size: large;
 }
 
-.list-group {
-    padding: 0px;
-    list-style: none;
+.status-icon {
+    background-color: var(--military-green);
+    padding: 5px 5px;
+    border-radius: 15px;
 }
+
+.icon-danger {
+    color: red
+}
+
+.icon-success {
+    color: green;
+}
+
+/* Card Start */
+.card {
+    margin: 20px;
+    border: 3px solid var(--military-green);
+    border-radius: var(--blue);
+  }
+  
+.card-header {
+    color: var(--kelly-green);
+    background-color: var(--platinum);
+    padding: 2.5%;
+    font-size: 200%;
+  }
+  
+.card-header i {
+    float: right;
+  }
+  
+.card-body {
+    padding: 20px;
+  }
+  
+.hidden-card {
+    visibility: hidden;
+  }
+
+.day{
+    background-color: var(--light-coral);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+    margin: auto;
+  }
+/* Card End */
+
+/* Form Start */
+.form-label,
+.form-input,
+.form-textarea {
+    display: block;
+}
+
+.form-label {
+    font-size: medium;
+    margin: 5px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 2%;
+    margin: 5px 5px;
+    font-size: large;
+    border: 3px solid var(--military-green);
+    border-radius: 10px;
+  }
+/* Form End */
+
+/* Start UV-Index */
+.uv-index-green {
+    padding: 5px 5px;
+    background-color: lightgreen;
+    border-radius: 5px;
+    display: inline;
+}
+
+.uv-index-yellow {
+    padding: 5px 5px;
+    background-color: lightyellow;
+    border-radius: 5px;
+    display: inline;
+}
+
+.uv-index-red {
+    padding: 5px 5px;
+    background-color: lightpink;
+    border-radius: 5px;
+    display: inline ;
+}
+/* End UV-Index*/
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
