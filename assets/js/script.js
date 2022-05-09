@@ -8,8 +8,8 @@ var citySearch = document.querySelector("#city-search");
 var fiveDay = document.querySelector("#five-day");
 var today = new Date();
 var actualCurrentWeather = document.querySelector("#actual-current-weather");
-var fiveDayHeader = document.querySelector("five-day-header");
-var currentWeatherCard = document.querySelector("current-weather-card");
+var fiveDayHeader = document.querySelector("#five-day-header");
+var currentWeatherCard = document.querySelector("#current-weather-card");
 
 //function to submit form//
 var submitForm = function(event) {
@@ -51,7 +51,6 @@ var getWeatherInfo = function (cityName) {
         var longitude = cityResponse.coord.lon;
         var city = cityResponse.name;
         var date = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-        //var weatherDescription = cityResponse.weather[0].description;
         var weatherIcon = cityResponse.weather[0].icon;
         var weatherIconLink = "<img src='http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png' />"
     
@@ -60,6 +59,7 @@ var getWeatherInfo = function (cityName) {
         actualCurrentWeather.innerHTML = city + " - " + date + "" + weatherIconLink;
         currentWeatherCard.classList.remove("hidden-card");
         fiveDay.classList.remove("hidden-card");
+       
 
         return fetch ('https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&exclude=alerts,minutely,hourly&units=imperial&appid=ba2aa9d96d00d0af91f1a943d7132459');
     })
