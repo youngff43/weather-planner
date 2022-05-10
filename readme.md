@@ -9,3 +9,4 @@ A weather dashboard website that uses OpenWeather One Call API to get the curren
 ![Picture of the Search History](/assets/images/showing-history.png "Picture of the Search History")
 
 ## Link to the Deployed Application
+https://youngff43.github.io/weather-planner/
