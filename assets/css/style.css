@@ -22,14 +22,18 @@ header {
     color: var(--kelly-green);
 }
 
-main {
-    margin: 20px auto;
-    width: 90%;
+.container {
+    margin: auto;
+    width: 100%;
+}
+
+.row {
+    margin: auto;
 }
 
 p {
-    font-size: large;
-    margin: 10px 10px;
+    font-size: medium;
+    margin: 5px 5px;
 }
 
 /* Button Formatting */
@@ -54,7 +58,7 @@ p {
 }
 
 .day p {
-    font-size: large;
+    font-size: small;
 }
 
 .status-icon {
@@ -73,7 +77,7 @@ p {
 
 /* Card Start */
 .card {
-    margin: 20px;
+    margin: 10px;
     border: 3px solid var(--military-green);
     border-radius: var(--blue);
   }
@@ -97,13 +101,12 @@ p {
     visibility: hidden;
   }
 
-.day{
+.day {
     background-color: var(--light-coral);
     border-radius: 5px;
-    margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 12px;
     text-align: center;
-    margin: auto;
+    margin: 5px 5px;
   }
 /* Card End */
 

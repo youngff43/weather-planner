@@ -121,14 +121,14 @@ var extendedForecast = weather.daily;
 for (let i = 0; i < extendedForecast.length - 3; i++) {
     var date = (today.getMonth() + 1) + '/' + (today.getDate() + i + 1) + '/' + today.getFullYear();
     var weatherIcon = extendedForecast[i].weather[0].icon;
-    //var weatherDescription = extendedForecast[i].weather[0].description;
     var weatherIconLink = "<img src='http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png'/>";
     var dayCard = document.createElement("div");
     dayCard.className = "day";
     dayCard.innerHTML = "<p>" + date + "</p>" +
         "<p>" + weatherIconLink + "</p>" +
         "<p>Temp: " + extendedForecast[i].temp.day.toFixed(1) + "F</p>" +
-        "<p>Humidity: " + extendedForecast[i].humidity + "%</p>"
+        "<p>Humidity: " + extendedForecast[i].humidity + "%</p>" +
+        "<p>Wind Speed: " + extendedForecast[i].wind_speed.toFixed(1) + " MPH"
         
         fiveDayBody.appendChild(dayCard);
     }
